@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,7 +28,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TaskManagerTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -42,7 +40,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun FinishedTaskText(imagePainter: Painter, title: String, subtitle: String, modifier: Modifier = Modifier) {
+fun FinishedTaskScreen(imagePainter: Painter, title: String, subtitle: String, modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -61,19 +59,19 @@ fun FinishedTaskText(imagePainter: Painter, title: String, subtitle: String, mod
     }
 }
 
+@Composable
+fun TaskManagerApp(){
+    FinishedTaskScreen(
+        imagePainter = painterResource(id = R.drawable.ic_task_completed),
+        title = stringResource(R.string.all_tasks_completed),
+        subtitle = stringResource(R.string.nice_work),
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 fun FinishedTaskPreview() {
     TaskManagerTheme {
         TaskManagerApp()
     }
-}
-
-@Composable
-fun TaskManagerApp(){
-    FinishedTaskText(
-        imagePainter = painterResource(id = R.drawable.ic_task_completed),
-        title = stringResource(R.string.all_tasks_completed),
-        subtitle = stringResource(R.string.nice_work),
-    )
 }
